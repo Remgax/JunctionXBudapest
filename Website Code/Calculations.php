@@ -4,9 +4,26 @@ require_once './user.php';
 require_once './functions.php';
 class Calculations
 {
-    public static function saveing(CountryBusketes $targetCountry, CountryBusketes $sourceCountry)
+    public static function saveing(CountryBusketes $targetCountry, CountryBusketes $sourceCountry, User $client)
     {
-
+        $overallIncome = 0;
+        foreach (Calculations::generateIncomeTransactions() as $key => $value) {
+            $overallIncome += $value;
+        }
+        $targetCountryGNI = $targetCountry->getGNIPerCaption();
+        $sourceCountryGNI = $sourceCountry->getGNIPerCaption();
+        $sum = 0;
+        $targetCountryBaskets = $targetCountry->baskets;
+        $sourceCountryBaskets = $sourceCountry->baskets;
+        $clientBaskets = $client->getUserBaskets();
+        foreach ($targetCountryBaskets as $key => $value) {
+            
+            echo "KEY: {$key} -   {$value} / {$sourceCountryBaskets[$key]} * {$clientBaskets[$key]}" . "<br>";
+            $sum += ($value / $sourceCountryBaskets[$key] * $clientBaskets[$key]);
+        }
+        $calculated = ($targetCountryGNI/$sourceCountryGNI*$overallIncome) - $sum;
+        echo 'KUTYA';
+        return $calculated;
     }
     public static function coverage(CountryBusketes $targetCountry, CountryBusketes $sourceCountry)
     {
@@ -36,9 +53,9 @@ class Calculations
     private static function generateIncomeTransactions()
     {
         $incomeHistory = [];
-        $transactions = rand(20);
+        $transactions = rand(0,20);
         for ($i = 0; $i < $transactions; $i++) {
-            $incomeHistory[] = rand(500);
+            $incomeHistory[] = rand(0,500);
         }
         return $incomeHistory;
     }
@@ -82,4 +99,6 @@ class Calculations
             return 'Unhappy';
         }
     }
+
+    
 }

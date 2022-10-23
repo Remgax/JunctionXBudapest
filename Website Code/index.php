@@ -7,10 +7,19 @@ Functions::createCountryData();
 Functions::basketStandardDeviation(); 
 
 //var_dump(Functions::$COUNTRYS);
-$a = Calculations::comparator(Functions::$COUNTRYS[0],$user,'Food and non-alcoholic beverages') . PHP_EOL;
-echo $a;
-echo Calculations::comperison($BASKETSTANDARDDIVIATION['Food and non-alcoholic beverages'],$a) . PHP_EOL;
+echo "Based on Basketek standard deviation" . '<br>';
+$a = Calculations::comparator(Functions::$COUNTRYS[0],$user,'Food and non-alcoholic beverages') . '<br>';
+echo "Comparator: ". $a ;
+echo "Comperision: ".Calculations::comperison($BASKETSTANDARDDIVIATION['Food and non-alcoholic beverages'],$a) . '<br>';
 
-$a = Calculations::comparator(Functions::$COUNTRYS[2],$user,'Alcoholic beverages, tobacco') . PHP_EOL;
-echo $a;
-echo Calculations::comperison($BASKETSTANDARDDIVIATION['Alcoholic beverages, tobacco'],$a) . PHP_EOL;
+
+echo "Coverage" . '<br>';
+$b = Calculations::comparator(Functions::$COUNTRYS[2],$user,'Alcoholic beverages, tobacco') . '<br>';
+echo "Comparator: ". $b;
+echo "Comperision: ".Calculations::comperison($BASKETSTANDARDDIVIATION['Alcoholic beverages, tobacco'],$b) . '<br>';
+
+echo "Savings". '<br>';
+$c = Calculations::saveing(Functions::$COUNTRYS[0],Functions::$COUNTRYS[2],$user);
+var_dump($c);
+echo $c . '<br>';
+

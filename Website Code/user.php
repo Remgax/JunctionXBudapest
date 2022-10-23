@@ -83,4 +83,8 @@ class User
         }
         $this->balanceAccounts = API::getBalanceAccounts($this);
     }
+    public function getUserBaskets()
+    {
+        return $this->basket;
+    }
 }

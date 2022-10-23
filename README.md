@@ -1,6 +1,6 @@
 # JunctionXBudapest 2022
 Team Name: EasyGo 
-Team membembers: 
+Team members: <br />
 
  - Bence Buzás
  - Luca Kmetti
